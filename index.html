@@ -651,7 +651,7 @@ function wrapDb(raw){
   }
   return {
     collection: function(name){
-      var c = raw.collection(name), w = wrapQ(c);
+      var c = raw.collection('chatgpt_v1_' + name), w = wrapQ(c);
       w.doc = function(id){ var d = c.doc(id); return { get:function(){ return d.get(); }, set:function(data,opt){ return d.set(Object.assign({}, data, {ns:NS}), opt); }, delete:function(){ return d.delete(); } }; };
       return w;
     },
